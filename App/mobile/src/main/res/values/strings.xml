@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Represent!</string>
+    <string name="action_settings">Settings</string>
+    <string name="enter_zipcode">Enter Zipcode</string>
+    <string name="title_activity_congressional_view">Your Congressmen</string>
+    <string name="democrat">Democrat</string>
+    <string name="republican">Republican</string>
+    <string name="barbara_email">senator@boxer.senate.gov</string>
+    <string name="barbara_website">www.boxer.senate.gov</string>
+    <string name="details">More Info</string>
+    <string name="title_activity_detailed_view">DetailedView</string>
+</resources>
