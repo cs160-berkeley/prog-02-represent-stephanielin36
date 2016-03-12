@@ -45,8 +45,7 @@ public class RandomZip {
         System.out.println(zipcodes);
         Random random = new Random();
         int num = random.nextInt(zipcodes.size());
-        //return zipcodes.get(num);
-        return "98052";
+        return zipcodes.get(num);
     }
 
 }
