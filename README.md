@@ -8,7 +8,7 @@ Stephanie Lin ([stlin@berkeley.edu](mailto:stlin@berkeley.edu))
 
 ## Demo Video
 
-See [the app in action!] (https://youtu.be/8fMZsuhYSPQ)
+See [the app in action!] (https://youtu.be/Nl5ZXa0hIUg)
 
 ## Screenshots
 
