@@ -38,6 +38,10 @@
             </intent-filter>
         </service>
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="c4152cca2b28d73cc68705d4b75fa015c01d390b" />
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

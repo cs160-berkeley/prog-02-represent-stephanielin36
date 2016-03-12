@@ -20,12 +20,14 @@
         <Button android:id = "@+id/more_info"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:hint= "@string/details"
+            android:text= "@string/details"
             android:textSize = "6.5pt"
+            android:fontFamily="sans-serif-light"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:layout_marginLeft="20dp"
-            android:color = "#A9BDBDBD"
+            android:backgroundTint = "#E6E6E6"
+            android:textColor="#424242"
             android:onClick="moreInfo">
 
         </Button>
@@ -46,6 +48,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginLeft="5dp"
             android:textStyle="bold"
+            android:fontFamily="sans-serif-light"
             android:textSize = "8pt"
             android:textColor = "#424242" />
 
@@ -57,7 +60,8 @@
             android:layout_below = "@id/congressional_name"
             android:paddingTop="3dp"
             android:layout_marginLeft="5dp"
-            android:textSize = "7.5pt" />
+            android:textSize = "7.5pt"
+            android:fontFamily="sans-serif-light"/>
 
         <TextView
             android:id="@+id/congressional_email"
@@ -68,7 +72,8 @@
             android:paddingTop="3dp"
             android:layout_marginLeft="5dp"
             android:textSize = "7pt"
-            android:textColor = "#424242"/>
+            android:textColor = "#424242"
+            android:fontFamily="sans-serif-light"/>
             <!--android:autoLink="web"/>-->
 
         <TextView
@@ -80,23 +85,20 @@
             android:paddingTop="3dp"
             android:layout_marginLeft="5dp"
             android:textSize = "7pt"
-            android:textColor = "#424242" />
+            android:textColor = "#424242"
+            android:fontFamily="sans-serif-light"/>
 
-        <TextView
-            android:id="@+id/congressional_tweet"
+        <LinearLayout android:id="@+id/tweet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_below = "@id/congressional_website"
             android:paddingTop="3dp"
             android:layout_marginLeft="5dp"
-            android:gravity = "center"
-            android:textSize = "6pt"
-            android:textColor = "#424242"
-            android:background="@drawable/border" />
+            android:background="@drawable/border"
+            android:orientation="vertical">
+        </LinearLayout>
 
     </LinearLayout>
 
-
 </LinearLayout>
-

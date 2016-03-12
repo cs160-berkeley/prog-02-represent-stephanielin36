@@ -16,16 +16,18 @@ public class MyGridPagerAdapter extends FragmentGridPagerAdapter {
     private final Context context;
     private final String[][] names;
     private final String[][] parties;
-    private final int[][] images;
+    private String[][] terms;
+    private String[][] ids;
     private final String[][]  vote2012;
 
-    public MyGridPagerAdapter(Context context, String[][] names, String[][] parties, int[][] imgs,
-                              String[][] vote2012, FragmentManager fm) {
+    public MyGridPagerAdapter(Context context, String[][] names, String[][] parties, String[][] terms,
+                              String[][] ids, String[][] vote2012, FragmentManager fm) {
         super(fm);
         this.context = context;
         this.names = names;
         this.parties = parties;
-        this.images = imgs;
+        this.terms = terms;
+        this.ids = ids;
         this.vote2012 = vote2012;
     }
 
@@ -38,14 +40,17 @@ public class MyGridPagerAdapter extends FragmentGridPagerAdapter {
 
             Custom2012 fragment = Custom2012.create(county, obama, romney);
             Log.d("T", "GOT A CUSTOM2012 FRAGMENT");
-
+            fragment.setExpansionEnabled(false);
             return fragment;
         } else {
             String name = names[row][col];
             String party = parties[row][col];
-            int image = images[row][col];
-            CustomFragment fragment = CustomFragment.create(name, party, image);
-
+            String term = terms[row][col];
+            String id = ids[row][col];
+            CustomFragment fragment = CustomFragment.create(name, party, term, id);
+            fragment.setExpansionEnabled(false);
+            fragment.setCardMarginLeft(0);
+            fragment.setCardMarginRight(0);
             return fragment;
         }
     }

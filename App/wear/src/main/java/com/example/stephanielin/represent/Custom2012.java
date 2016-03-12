@@ -29,7 +29,7 @@ public class Custom2012 extends CardFragment {
         }
 
         if(romney != null) {
-            args.putString("CardFragment_image", romney);
+            args.putString("CardFragment_romney", romney);
         }
 
         fragment.setArguments(args);
@@ -60,7 +60,7 @@ public class Custom2012 extends CardFragment {
 
             if(args.containsKey("CardFragment_romney")) {
                 TextView romney = (TextView) card.findViewById(R.id.romney_results);
-                romney.setText(args.getInt("CardFragment_image"));
+                romney.setText(args.getCharSequence("CardFragment_romney"));
             }
         }
         return card;

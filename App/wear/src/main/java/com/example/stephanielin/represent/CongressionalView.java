@@ -1,6 +1,7 @@
 package com.example.stephanielin.represent;
 
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
@@ -14,19 +15,31 @@ public class CongressionalView extends Activity {
 
     private SensorManager mSensorManager;
     private ShakeEventListener mSensorListener;
+    private String[][] names = {{}};
+    private String[][] parties = {{}};
+    private String[][] terms = {{}};
+    private String[][] ids = {{}};
+    private String[][] vote = {{}};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_congressional_view);
-        //getActionBar().setDisplayHomeAsUpEnabled(true);
-        String[][] names = {{"Barbara Boxer", "Barbara Lee", "Dianne Feinstein"}};
-        String[][] parties = {{"Democrat", "Democrat", "Democrat"}};
-        int[][] photos = {{R.drawable.barbaraboxer, R.drawable.barbaralee, R.drawable.diannefeinstein}};
-        String[][] vote2012 = {{"Alameda County, CA", "Obama: 78% of Vote", "Romney: 22% of Vote"}};
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        names[0] = extras.getString("NAMES").split(";");
+        parties[0] = extras.getString("PARTIES").split(";");
+        terms[0] = extras.getString("TERMS").split(";");
+        ids[0] = extras.getString("IDS").split(";");
+        vote[0] = extras.getString("2012").split(";");
+        Log.d("T", "congressional view: " + extras.getString("2012"));
+
+
         final GridViewPager pager = (GridViewPager) findViewById(R.id.pager);
-        pager.setAdapter(new MyGridPagerAdapter(this, names, parties, photos, vote2012, getFragmentManager()));
+
+        pager.setAdapter(new MyGridPagerAdapter(this, names, parties, terms, ids, vote, getFragmentManager()));
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorListener = new ShakeEventListener();
@@ -40,13 +53,13 @@ public class CongressionalView extends Activity {
 
                 Toast toast = Toast.makeText(getApplicationContext(), "SHAKE DETECTED!", duration);
                 toast.show();
-                String[][] names = {{"Barbara Boxer", "Barbara Lee", "Dianne Feinstein"}};
-                String[][] parties = {{"Democrat", "Democrat", "Democrat"}};
-                int[][] photos = {{R.drawable.barbaraboxer, R.drawable.barbaralee, R.drawable.diannefeinstein}};
-                String[][] vote2012 = {{"Los Angeles, CA", "Obama: 100% of Vote", "Romney: 0% of Vote"}};
-                final GridViewPager pager = (GridViewPager) findViewById(R.id.pager);
-                pager.setAdapter(new MyGridPagerAdapter(getApplicationContext(), names, parties, photos, vote2012, getFragmentManager()));
-
+                RandomZip r = new RandomZip(getApplicationContext());
+                String zip = r.findRandom();
+                Intent sendIntent = new Intent(getBaseContext(), WatchToPhoneService.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("ZIP", zip);
+                sendIntent.putExtras(bundle);
+                getBaseContext().startService(sendIntent);
             }
         });
     }

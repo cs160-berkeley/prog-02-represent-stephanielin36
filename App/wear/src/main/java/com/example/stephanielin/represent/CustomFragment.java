@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
@@ -18,7 +20,7 @@ import android.widget.TextView;
 public class CustomFragment extends CardFragment {
 
 
-    public static CustomFragment create(CharSequence title, CharSequence text, int image) {
+    public static CustomFragment create(CharSequence title, CharSequence text, CharSequence term, CharSequence id) {
         CustomFragment fragment = new CustomFragment();
         Bundle args = new Bundle();
         if(title != null) {
@@ -29,8 +31,12 @@ public class CustomFragment extends CardFragment {
             args.putCharSequence("CardFragment_text", text);
         }
 
-        if(image != 0) {
-            args.putInt("CardFragment_image", image);
+        if(term != null) {
+            args.putCharSequence("CardFragment_term", term);
+        }
+
+        if(id != null) {
+            args.putCharSequence("CardFragment_id", id);
         }
 
         fragment.setArguments(args);
@@ -40,9 +46,10 @@ public class CustomFragment extends CardFragment {
     @Override
     public View onCreateContentView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d("T", "IN CUSTOM FRAGMENT");
+        System.out.println(container);
         View card = inflater.inflate(R.layout.card, container, false);
 
-        ImageView img = (ImageView) card.findViewById(R.id.img);
+        LinearLayout screen = (LinearLayout) card.findViewById(R.id.screen);
 
         Log.d("T", "INFLATED LAYOUT");
         final Bundle args = this.getArguments();
@@ -59,22 +66,18 @@ public class CustomFragment extends CardFragment {
                     party.setText(args.getCharSequence("CardFragment_text"));
                 }
             }
-
-            if(args.containsKey("CardFragment_image") && name != null) {
-                img.setImageResource(args.getInt("CardFragment_image"));
-            }
         }
 
-        img.setOnClickListener(new View.OnClickListener() {
+        screen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent sendIntent = new Intent(getActivity(), WatchToPhoneService.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("NAME", args.getCharSequence("CardFragment_title").toString());
                 bundle.putString("PARTY", args.getCharSequence("CardFragment_text").toString());
-                bundle.putInt("IMAGE", args.getInt("CardFragment_image"));
+                bundle.putString("TERM", args.getCharSequence("CardFragment_term").toString());
+                bundle.putString("ID", args.getCharSequence("CardFragment_id").toString());
                 sendIntent.putExtras(bundle);
-                Log.d("T", "STARTING WATCH TO PHONE");
                 getActivity().startService(sendIntent);
                 Log.d("T", "DONE ");
             }

@@ -35,23 +35,43 @@ public class PhoneListenerService extends WearableListenerService {
 
     //   WearableListenerServices don't need an iBinder or an onStartCommand: they just need an onMessageReceieved.
     private static final String TOAST = "/send_toast";
+    private String name;
+    private String party;
+    private String term;
+    private String id;
+    private String zip;
 
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
         Log.d("T", "in PhoneListenerService, got: " + messageEvent.getPath());
-        if( messageEvent.getPath() != null) {
+        String value = new String(messageEvent.getData(), StandardCharsets.UTF_8);
 
-            // Value contains the String we sent over in WatchToPhoneService, "good job"
-            String value = new String(messageEvent.getData(), StandardCharsets.UTF_8);
-            String[] info = value.split(";");
+        if (messageEvent.getPath().equalsIgnoreCase("/zip")) {
+            zip = value;
+            Intent intent = new Intent(this, MainActivity.class);
+            Bundle extras = new Bundle();
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            extras.putString("ZIP", zip);
+            Log.d("T", "PHONE LISTENER: " + zip);
+            intent.putExtras(extras);
+            startActivity(intent);
+        } else if (messageEvent.getPath().equalsIgnoreCase("/name")) {
+            name = value;
+        } else if (messageEvent.getPath().equalsIgnoreCase("/party")) {
+            party = value;
+        } else if (messageEvent.getPath().equalsIgnoreCase("/term")) {
+            term = value;
+        } else if (messageEvent.getPath().equalsIgnoreCase("/id")) {
+            id = value;
+        } else if (messageEvent.getPath().equalsIgnoreCase("/start_intent")) {
 
-            Context context = getApplicationContext();
             Intent intent = new Intent(this, DetailedView.class);
             Bundle extras = new Bundle();
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            extras.putString("NAME", info[0]);
-            extras.putString("PARTY", info[1]);
-            //extras.putInt("IMAGE", Integer.parseInt(info[2]));
+            extras.putString("NAME", name);
+            extras.putString("PARTY", party);
+            extras.putString("TERM", term);
+            extras.putString("ID", id);
             intent.putExtras(extras);
             startActivity(intent);
 

@@ -41,11 +41,18 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
     final Service __this = this;
     private String name;
     private String party;
-    private int image;
+    private String term;
+    private String id;
+    private String zip;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        name = "";
+        party = "";
+        term = "";
+        id = "";
+        zip = "";
         Log.d("T", "IN WATCH TO PHONE ON CREATE");
         //initialize the googleAPIClient for message passing
         mWatchApiClient = new GoogleApiClient.Builder( this )
@@ -78,14 +85,21 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
     public int onStartCommand(Intent intent, int flags, int startID) {
         if (intent != null) {
             Bundle bundle = intent.getExtras();
-            name = bundle.getString("NAME");
-            party = bundle.getString("PARTY");
-            image = bundle.getInt("IMAGE");
-//            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), image);
-//            Asset asset = createAssetFromBitmap(bitmap);
-//            PutDataRequest request = PutDataRequest.create("/image");
-//            request.putAsset("profileImage", asset);
-//            Wearable.DataApi.putDataItem(mWatchApiClient, request);
+            if (bundle.containsKey("NAME")) {
+                name = bundle.getString("NAME");
+            }
+            if (bundle.containsKey("PARTY")) {
+                party = bundle.getString("PARTY");
+            }
+            if (bundle.containsKey("TERM")) {
+                term = bundle.getString("TERM");
+            }
+            if (bundle.containsKey("ID")) {
+                id = bundle.getString("ID");
+            }
+            if (bundle.containsKey("ZIP")) {
+                zip = bundle.getString("ZIP");
+            }
         }
         mWatchApiClient.connect();
         Log.d("T", "IN WATCH TO PHONE CONNECTED");
@@ -104,8 +118,37 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
                         Log.d("T", "found nodes");
                         //when we find a connected node, we populate the list declared above
                         //finally, we can send a message
-                        sendMessage("/"+name, name + ";" + party + ";" + image);
-                        Log.d("T", "sent");
+                        if (zip.equals("")) {
+                            sendMessage("/name", name);
+                            try {
+                                Thread.sleep(500);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            sendMessage("/party", party);
+                            try {
+                                Thread.sleep(500);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            sendMessage("/term", term);
+                            try {
+                                Thread.sleep(500);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            sendMessage("/ID", id);
+                            try {
+                                Thread.sleep(500);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            sendMessage("/start_intent", "start_intent");
+
+                        } else {
+                            sendMessage("/zip", zip);
+                        }
+
                         __this.stopSelf();
                     }
                 });

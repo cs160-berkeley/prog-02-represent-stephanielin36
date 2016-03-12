@@ -1,53 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:layout_gravity="center"
+    tools:context=".CongressionalView"
     android:orientation="vertical"
-    android:background="#FFFFFF"
-    tools:deviceIds="wear_round">
+    tools:deviceIds="wear_round"
+    android:background="@drawable/american_flag">
 
-    <TextView android:id="@+id/title"
-        android:layout_width="wrap_content"
+    <android.support.wearable.view.CardFrame
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="@string/_2012"
-        android:textSize = "9pt"
-        android:textColor = "#000000"
-        android:textStyle = "bold"/>
+        android:layout_width="fill_parent"
+        android:backgroundTint ="#fffae6">
 
-    <TextView android:id="@+id/county"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Alameda County, CA"
-        android:layout_below = "@id/title"
-        android:layout_marginTop="5dp"
-        android:textColor = "#000000"
-        android:textSize = "6pt"/>
+        <LinearLayout android:id = "@+id/screen"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="5dp">
 
-    <TextView
-        android:id="@+id/obama_results"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop = "5dp"
-        android:layout_below="@+id/county"
-        android:text="Obama: 78% of Vote"
-        android:textColor = "#000000"
-        android:textSize = "6pt"/>
+            <TextView android:id = "@+id/county"
+                android:fontFamily="sans-serif-light"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="hello"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:textSize="5pt"/>
 
-    <TextView
-        android:id="@+id/romney_results"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop = "5dp"
-        android:layout_below="@+id/obama_results"
-        android:text="Romney: 22% of Vote"
-        android:textColor = "#000000"
-        android:textSize = "6pt"/>
-</RelativeLayout>
+            <TextView android:id = "@+id/obama_results"
+                android:fontFamily="sans-serif-light"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="bye"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:textSize="4pt"/>
+
+            <TextView android:id = "@+id/romney_results"
+                android:fontFamily="sans-serif-light"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="bye"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:textSize="4pt"/>
+
+        </LinearLayout>
+    </android.support.wearable.view.CardFrame>
+
+
+</LinearLayout>

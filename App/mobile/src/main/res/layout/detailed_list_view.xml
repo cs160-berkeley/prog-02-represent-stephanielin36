@@ -22,7 +22,8 @@
             android:layout_marginTop="40dp"
             android:gravity="center"
             android:textSize = "11pt"
-            android:textColor = "#2E2E2E" />
+            android:textColor = "#2E2E2E"
+            android:fontFamily="sans-serif-light"/>
 
         <TextView android:id = "@+id/detailed_term"
             android:layout_width = "match_parent"
@@ -33,7 +34,8 @@
             android:layout_marginTop="30dp"
             android:gravity="center"
             android:textSize = "11pt"
-            android:textColor = "#2E2E2E" />
+            android:textColor = "#2E2E2E"
+            android:fontFamily="sans-serif-light"/>
 
     </RelativeLayout>
 
@@ -44,13 +46,14 @@
         android:gravity="center"
         android:textColor = "#2E2E2E"
         android:textSize = "11pt"
-        android:text = "Current Committees:" />
+        android:text = "Current Committees:"
+        android:fontFamily="sans-serif-light"/>
 
     <LinearLayout android:id="@+id/committee_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#EFF5FB"
+        android:background="#fffae6"
         >
     </LinearLayout>
 
@@ -61,13 +64,14 @@
         android:gravity="center"
         android:textColor = "#2E2E2E"
         android:textSize = "11pt"
-        android:text = "Sponsored Bills:" />
+        android:text = "Sponsored Bills:"
+        android:fontFamily="sans-serif-light"/>
 
     <LinearLayout android:id="@+id/bills_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#EFF5FB">
+        android:background="#fffae6">
     </LinearLayout>
 
 

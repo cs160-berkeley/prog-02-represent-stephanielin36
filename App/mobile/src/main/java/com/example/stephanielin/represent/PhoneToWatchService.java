@@ -23,6 +23,8 @@ import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
 
+import java.util.ArrayList;
+
 public class PhoneToWatchService extends Service {
 
     private GoogleApiClient mApiClient;
@@ -57,10 +59,12 @@ public class PhoneToWatchService extends Service {
         // Which cat do we want to feed? Grab this info from INTENT
         // which was passed over when we called startService
         Log.d("T", "in PhoneToWatchService onStartCommand");
-        Bundle extras = intent.getExtras();
-        final String name = extras.getString("NAME");
-        final String party = extras.getString("PARTY");
-        final int image = extras.getInt("IMAGE");
+        final Bundle extras = intent.getExtras();
+        final String names = extras.getString("NAMES");
+        final String parties = extras.getString("PARTIES");
+
+//
+//        final int image = extras.getInt("IMAGE");
 
         // Send the message with the cat name
         new Thread(new Runnable() {
@@ -69,7 +73,38 @@ public class PhoneToWatchService extends Service {
                 //first, connect to the apiclient
                 mApiClient.connect();
                 //now that you're connected, send a massage with the cat name
-                sendMessage("/" + name, name);
+                sendMessage("/names", names);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                sendMessage("/parties", parties);
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                sendMessage("/terms", extras.getString("TERMS"));
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                sendMessage("/ids", extras.getString("IDS"));
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                sendMessage("/2012", extras.getString("2012"));
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                sendMessage("/start_intent", "start intent");
+
             }
         }).start();
 

@@ -1,6 +1,8 @@
 package com.example.stephanielin.represent;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +35,8 @@ public class BulletListAdapter extends BaseAdapter {
         View row = inflater.inflate(R.layout.bullet_list, null);
         holder.text = (TextView) row.findViewById(R.id.list_item);
         holder.text.setText(items[position]);
-
+        holder.text.setTextColor(Color.parseColor("#2E2E2E"));
+        holder.text.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
         return row;
     }
 

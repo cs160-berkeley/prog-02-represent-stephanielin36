@@ -1,6 +1,7 @@
 package com.example.stephanielin.represent;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.Image;
 import android.view.LayoutInflater;
@@ -21,13 +22,13 @@ import org.w3c.dom.Text;
 public class DetailedAdapter extends BaseAdapter {
 
     private final Context context;
-    private final int img;
+    private final Bitmap img;
     private final String party;
     private final String term;
     private final String[] committees;
     private final String[] bills;
 
-    public DetailedAdapter(Context context, int img, String party, String term, String[] committees, String[] bills) {
+    public DetailedAdapter(Context context, Bitmap img, String party, String term, String[] committees, String[] bills) {
         this.img = img;
         this.context = context;
         this.party = party;
@@ -68,7 +69,7 @@ public class DetailedAdapter extends BaseAdapter {
         holder.party = (TextView) row.findViewById(R.id.detailed_party);
         holder.term = (TextView) row.findViewById(R.id.detailed_term);
 
-        holder.image.setImageResource(img);
+        holder.image.setImageBitmap(img);
         holder.party.setText(party);
 
         if (party.equals("Democrat")) {
@@ -77,7 +78,8 @@ public class DetailedAdapter extends BaseAdapter {
             holder.party.setTextColor(Color.parseColor("#DF0101"));
         }
 
-        holder.term.setText(term);
+        String end = "End of Term: " + term;
+        holder.term.setText(end);
 
         return row;
     }

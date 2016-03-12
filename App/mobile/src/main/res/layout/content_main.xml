@@ -7,68 +7,91 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.stephanielin.represent.MainActivity"
     tools:showIn="@layout/activity_main"
-    android:background="#E6E6E6">
+    android:id = "@+id/parent"
+    android:background="@drawable/american_flag">
 
-    <LinearLayout android:id="@+id/zipcode_line"
+    <RelativeLayout android:id = "@+id/lower_half"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#B3FFFFFF"
-        android:layout_marginTop="125dp"
-        android:orientation="horizontal"
-        android:weightSum="1"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true">
+        android:background="#fffae6"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
 
-        <TextView android:id="@+id/zip"
-            android:layout_width="140dp"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentEnd="true"
-            android:gravity="center"
-            android:hint="Zip Code:"
-            android:textColor="#000000"
-            android:textSize="10pt" />
-
-        <EditText android:id="@+id/edit_zip"
-            android:layout_width="match_parent"
+        <LinearLayout android:id="@+id/zipcode_line"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:hint="@string/enter_zipcode"
-            android:inputType="number"
-            android:typeface="sans"
-            android:textSize="10pt"
-            android:textColor="#000000"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true">
+
+            <TextView android:id="@+id/zip"
+                android:layout_width="140dp"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:fontFamily="sans-serif-light"
+                android:text="Zip Code:"
+                android:textColor = "#2E2E2E"
+                android:textStyle="bold"
+                android:textSize="10pt" />
+
+            <EditText android:id="@+id/edit_zip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="@string/enter_zipcode"
+                android:inputType="number"
+                android:typeface="sans"
+                android:textSize="10pt"
+                android:textColorHint="#2E2E2E"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-light"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true" />
+
+        </LinearLayout>
+
+        <Button android:id="@+id/zip_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter"
+            android:layout_below="@+id/zipcode_line"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true" />
+            android:textColor="#2E2E2E"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-light"
+            android:backgroundTint = "#E6E6E6"
+            android:layout_marginTop="20dp" />
 
-    </LinearLayout>
+        <TextView android:id = "@+id/OR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "@string/or"
+            android:textSize = "10pt"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/zip_btn"
+            android:textColor="#2E2E2E"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-light"
+            android:layout_centerHorizontal="true" />
 
-    <Button android:id="@+id/zip_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enter"
-        android:layout_below="@+id/zipcode_line"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="55dp" />
+        <Button android:id="@+id/curr_loc_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Use Current Location"
+            android:layout_below="@+id/OR"
+            android:textColor="#2E2E2E"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-light"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint = "#E6E6E6"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"/>
 
-    <TextView android:id = "@+id/OR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint = "OR"
-        android:textSize = "10pt"
-        android:textStyle="bold"
-        android:layout_marginTop="36dp"
-        android:layout_below="@+id/zip_btn"
-        android:layout_centerHorizontal="true" />
-
-    <Button android:id="@+id/curr_loc_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Use Current Location"
-        android:layout_below="@+id/OR"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp"/>
+    </RelativeLayout>
 
 </RelativeLayout>
